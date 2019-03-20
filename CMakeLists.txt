@@ -19,7 +19,7 @@ add_library(zeda_strlist src/zeda_strlist.c)
 add_library(zeda_option src/zeda_option.c)
 add_library(zeda_bfile src/zeda_bfile.c)
 
-add_library(zeda SHARED 
+add_library(${PROJECT_NAME} SHARED 
     src/zeda_misc.c
     src/zeda_string.c
     src/zeda_bit.c
@@ -35,18 +35,18 @@ add_library(zeda SHARED
 
 # Install
 install(DIRECTORY include
-    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+    DESTINATION ${PROJECT_NAME}
 )
 
-install(TARGETS zeda LIBRARY DESTINATION lib)
+install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
 
-install(TARGETS zeda
-    EXPORT zeda-export
+install(TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}-export
     LIBRARY        DESTINATION lib
     INCLUDES       DESTINATION include
-    PUBLIC_HEADER  DESTINATION include/zeda)
+    PUBLIC_HEADER  DESTINATION include/${PROJECT_NAME})
 
-install(EXPORT zeda-export
-    FILE zeda-config.cmake
-    DESTINATION share/cmake/zeda
+install(EXPORT ${PROJECT_NAME}-export
+    FILE ${PROJECT_NAME}-config.cmake
+    DESTINATION share/cmake/${PROJECT_NAME}
     EXPORT_LINK_INTERFACE_LIBRARIES)
