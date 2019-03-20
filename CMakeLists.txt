@@ -34,9 +34,10 @@ add_library(${PROJECT_NAME} SHARED
     src/zeda_bfile.c)
 
 # Install
-install(DIRECTORY include
-    DESTINATION ${PROJECT_NAME}
-)
+INSTALL (
+    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.h*")
 
 install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
 
