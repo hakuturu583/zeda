@@ -33,3 +33,14 @@ add_library(zeda SHARED
     src/zeda_bfile.c)
 
 INSTALL(TARGETS zeda LIBRARY DESTINATION lib)
+
+install(TARGETS zeda
+    EXPORT zeda-export
+    LIBRARY        DESTINATION lib
+    INCLUDES       DESTINATION include
+    PUBLIC_HEADER  DESTINATION include/zeda)
+
+install(EXPORT zeda-export
+    FILE zeda-config.cmake
+    DESTINATION share/cmake/zeda
+    EXPORT_LINK_INTERFACE_LIBRARIES)
