@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(zeda)
 
-add_definitions("-Wall -g -O0")
+add_definitions("-Wall -g -O3")
 
 include_directories(include)
 
+# Build
 add_library(zeda_misc src/zeda_misc.c)
 add_library(zeda_string src/zeda_string.c)
 add_library(zeda_bit src/zeda_bit.c)
@@ -32,7 +33,12 @@ add_library(zeda SHARED
     src/zeda_option.c
     src/zeda_bfile.c)
 
-INSTALL(TARGETS zeda LIBRARY DESTINATION lib)
+# Install
+install(DIRECTORY include
+    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+
+install(TARGETS zeda LIBRARY DESTINATION lib)
 
 install(TARGETS zeda
     EXPORT zeda-export
